@@ -1,0 +1,10 @@
+<launch>
+   
+  <param name="file_path" type="string" value="/home/bee/robotak/marisorgin/ros/src/mari_speech/mari_speech_eus/" />
+  <param name="tts_path" type="string" value="/home/bee/softwarea/ahotts-code/bin/" /> 
+  <!-- Launch Mari text-to-speech node -->
+  <node pkg="nao_speech_eus" type="nao_tts_eus.py" name="nao_tts_eus" output="screen">
+	
+  </node>
+ 
+</launch>

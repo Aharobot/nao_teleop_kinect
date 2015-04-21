@@ -1,0 +1,8 @@
+<launch>
+  
+  <param name="file_path" type="string" value="/home/bee/robotak/marisorgin/ros/src/mari_speech/mari_speech_eus" />
+  <!-- Launch Mari Google Speech node -->
+  <node pkg="mari_speech_eus" type="mari_gspeech.py" name="mari_gspeech" output="screen">
+  </node>
+ 
+</launch>

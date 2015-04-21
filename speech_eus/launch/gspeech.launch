@@ -1,0 +1,9 @@
+<launch>
+  
+  <param name="file_path" type="string" value="/home/tam/catkin_ws/src/speech_eus/" />
+  <param name="audio_rec_path" type="string" value="/home/tam/catkin_ws/src/speech_eus/audio/recording.wav" />
+  <!-- Launch Basque Google Speech node -->
+  <node pkg="speech_eus" type="gspeech.py" name="gspeech" output="screen">
+  </node>
+ 
+</launch>

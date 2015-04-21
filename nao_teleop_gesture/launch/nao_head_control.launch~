@@ -1,0 +1,22 @@
+<launch>
+
+  <!-- Startup arguments -->
+  <arg name="nao_ip" default="$(optenv NAO_IP 192.168.1.127)" />
+  <arg name="nao_port" default="$(optenv NAO_PORT 9559)" />
+  <arg name="force_python" default="false" />
+  
+  <!-- Required nodes for NAO bringup -->
+  <include file="$(find nao_bringup_rsait)/launch/nao_full.launch">
+    <arg name="nao_ip" value="$(arg nao_ip)" />
+    <arg name="nao_port" value="$(arg nao_port)" />
+    <arg name="force_python" value="$(arg force_python)" />
+  </include> 
+
+  <!-- Required nodes for NAO teleoperation -->
+  <include file="$(find skeleton_tracker)/launch/skeleton_tracker.launch" />  
+  <node pkg="nao_teleop_gesture" type="nao_head_control" name="nao_head_control" output="screen"></node>
+
+  <!-- Run rviz with a specific configuration -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-f base_link -d $(find nao_teleop_gesture)/config/nao_teleop.rviz" />
+
+</launch>

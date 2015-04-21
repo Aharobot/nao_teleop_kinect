@@ -1,0 +1,10 @@
+<launch>
+   
+  <param name="file_path" type="string" value="/home/tam/catkin_ws/src" />
+  <param name="tts_path" type="string" value="/home/bee/softwarea/ahotts-code/bin/" /> 
+  <!-- Launch Mari text-to-speech node -->
+  <node pkg="speech_eus" type="tts_eus.py" name="tts_eus" output="screen">
+	
+  </node>
+ 
+</launch>

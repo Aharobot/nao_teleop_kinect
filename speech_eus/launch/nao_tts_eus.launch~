@@ -1,0 +1,8 @@
+<launch>
+    
+  <!-- Launch Mari text-to-speech node -->
+  <node pkg="nao_speech_eus" type="nao_tts_eus.py" name="nao_tts_eus" output="screen">
+	
+  </node>
+ 
+</launch>

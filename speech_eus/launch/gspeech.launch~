@@ -1,0 +1,9 @@
+<launch>
+  
+  <param name="file_path" type="string" value="/home/bee/robotak/marisorgin/ros/src/mari_speech/mari_speech_eus/" />
+  <param name="audio_rec_path" type="string" value="/home/bee/robotak/marisorgin/ros/src/mari_speech/mari_speech_eus/audio/recording.wav" />
+  <!-- Launch Basque Google Speech node -->
+  <node pkg="speech_eus" type="gspeech.py" name="gspeech" output="screen">
+  </node>
+ 
+</launch>

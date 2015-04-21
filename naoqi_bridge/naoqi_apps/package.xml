@@ -1,0 +1,16 @@
+<package>
+  <name>naoqi_apps</name>
+  <version>0.4.7</version>
+  <description>Package bridging NAOqi to executing things on the robot.</description>
+  <author>Vincent Rabaud</author>
+  <maintainer email="vincent.rabaud@gmail.com">Vincent Rabaud</maintainer>
+  <license>Apache 2.0</license>
+
+  <url type="website">http://ros.org/wiki/nao</url>
+  <url type="bugtracker">https://github.com/ros-naoqi/naoqi_bridge/issues</url>
+  <url type="repository">https://github.com/ros-naoqi/naoqi_bridge.git</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <run_depend>naoqi_driver</run_depend>
+</package>

@@ -1,0 +1,23 @@
+<launch>
+
+  <!-- Velocity parameters -->
+  <param name="walk_vel" type="double" value="1.0" />
+  <param name="lat_vel" type="double" value="0.7" />
+  <param name="rot_vel" type="double" value="0.3" />
+
+  
+  <!-- Use Python nodes by default for nao_driver -->
+  <arg name="force_python" default="true" />
+  
+  <include file="$(find nao_description)/launch/nao_v4_publisher.launch" />
+
+  <include file="$(find nao_driver)/launch/nao_driver_sim.launch">
+    <arg name="force_python" value="$(arg force_python)" />
+  </include>
+  <include file="$(find nao_pose)/launch/pose_manager.launch" />
+
+  <include file="$(find skeleton_tracker)/launch/skeleton_tracker.launch"/>  
+  <node pkg="nao_teleop_gesture" type="nao_arm_control" name="nao_arm_control" output="screen"></node>
+  
+
+</launch>

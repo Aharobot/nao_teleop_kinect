@@ -1,0 +1,80 @@
+<launch>
+
+  <!-- Startup arguments -->
+  <arg name="nao_ip" default="$(optenv NAO_IP 192.168.1.127)" />
+  <arg name="camera_pos" default="0" />
+  <arg name="walker_type" default="0" />
+  <arg name="sonar_status" default="0" />
+  
+  <!-- Startup parameters -->
+  <param name="nao_ip" type="string" value="$(arg nao_ip)" />		
+  <param name="sonar_status" type="double" value="$(arg sonar_status)" /> <!-- 0 = deactivated, 1 = activated -->
+
+  <!-- Required nodes to bring up NAO -->
+  <node pkg="diagnostic_aggregator" type="aggregator_node" name="diag_agg" clear_params="true">
+    <rosparam command="load" file="$(find nao_bringup)/config/nao_analysers.yaml" />
+  </node>
+
+  <include file="$(find nao_description)/launch/nao_v4_publisher.launch" />
+  <include file="$(find nao_driver)/launch/nao_driver.launch">
+    <arg name="nao_ip" value="$(arg nao_ip)" />
+    <arg name="camera_pos" value="$(arg camera_pos)" /> <!-- 0 = top, 1 = bottom -->
+    <arg name="walker_type" value="$(arg walker_type)" /> <!-- 0: original, 1: modified -->
+  </include>
+  <include file="$(find nao_pose)/launch/pose_manager.launch" />
+  
+  <!-- Required nodes for NAO teleoperation -->
+  <node pkg="nao_teleop_speech_eus" type="nao_gspeech.py" name="nao_gspeech" output="screen"></node>
+  <node pkg="nao_teleop_speech_eus" type="nao_tts_eus.py" name="nao_tts_eus" output="screen"></node>
+  <node pkg="nao_teleop_speech_eus" type="nao_teleop_speech" name="nao_teleop_speech" output="screen">
+    <param name="cmd_000" type="str" value="altxatu" />
+    <param name="cmd_001" type="str" value="altzatu" />
+    <param name="cmd_002" type="str" value="tentetu" />
+    <param name="cmd_003" type="str" value="tente" />
+    <param name="cmd_004" type="str" value="zutitu" />
+    <param name="cmd_005" type="str" value="zutik" />
+    <param name="cmd_006" type="str" value="gora" />
+    <param name="cmd_007" type="str" value="eseri" />
+    <param name="cmd_008" type="str" value="jesarri" />
+    <param name="cmd_009" type="str" value="jarri" />
+    <param name="cmd_010" type="str" value="behera" />
+    <param name="cmd_011" type="str" value="aurrera" />
+    <param name="cmd_012" type="str" value="aurreraka" />
+    <param name="cmd_013" type="str" value="atzera" />
+    <param name="cmd_014" type="str" value="atzeraka" />
+    <param name="cmd_015" type="str" value="geratu" />
+    <param name="cmd_016" type="str" value="gelditu" />
+    <param name="cmd_017" type="str" value="geldi" />
+    <param name="cmd_018" type="str" value="ezkerrera biratu" />
+    <param name="cmd_019" type="str" value="biratu ezkerrera" />
+    <param name="cmd_020" type="str" value="ezker aldera biratu" />
+    <param name="cmd_021" type="str" value="biratu ezker aldera" />
+    <param name="cmd_022" type="str" value="ezkerraldera biratu" />
+    <param name="cmd_023" type="str" value="biratu ezkerraldera" />
+    <param name="cmd_024" type="str" value="eskuinera biratu" />
+    <param name="cmd_025" type="str" value="biratu eskuinera" />
+    <param name="cmd_026" type="str" value="eskuin aldera biratu" />
+    <param name="cmd_027" type="str" value="biratu eskuin aldera" />
+    <param name="cmd_028" type="str" value="eskuinaldera biratu" />
+    <param name="cmd_029" type="str" value="biratu eskuinaldera" />
+    <param name="cmd_030" type="str" value="ezkerrera mugitu" />
+    <param name="cmd_031" type="str" value="mugitu ezkerrera" />
+    <param name="cmd_032" type="str" value="ezker aldera mugitu" />
+    <param name="cmd_033" type="str" value="mugitu ezker aldera" />
+    <param name="cmd_034" type="str" value="ezkerraldera mugitu" />
+    <param name="cmd_035" type="str" value="mugitu ezkerraldera" />
+    <param name="cmd_036" type="str" value="eskuinera mugitu" />
+    <param name="cmd_037" type="str" value="mugitu eskuinera" />
+    <param name="cmd_038" type="str" value="eskuin aldera mugitu" />
+    <param name="cmd_039" type="str" value="mugitu eskuin aldera" />
+    <param name="cmd_040" type="str" value="eskuinaldera mugitu" />
+    <param name="cmd_041" type="str" value="mugitu eskuinaldera" />
+  </node>
+  
+  <include file="$(find openni_launch)/launch/openni.launch" />
+  
+  <!-- Run rviz with a specific configuration -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-f torso -d $(find nao_teleop_gesture)/config/nao_teleop.rviz" />
+  
+
+</launch>

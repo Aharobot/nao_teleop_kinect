@@ -1,0 +1,7 @@
+<launch>
+
+  <include file="$(find openni_launch)/launch/openni.launch" />
+  <node pkg="skeleton_tracker" type="skeleton_tracker" name="skeleton_tracker"></node>
+  <node pkg="skeleton_tracker" type="openni_skeleton" name="openni_skeleton"></node>
+
+</launch>

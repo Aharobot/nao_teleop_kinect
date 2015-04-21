@@ -1,0 +1,6 @@
+<launch>
+  
+  <!-- Required nodes for NAO teleoperation -->
+  <node pkg="mari_speech_eus" type="mari_gspeech.py" name="mari_gspeech" output="screen"></node>
+ 
+</launch>
